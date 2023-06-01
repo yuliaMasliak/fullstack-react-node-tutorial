@@ -50,15 +50,12 @@ function App() {
 
   const anecdoteHandler = () => {
     const random = Math.floor(Math.random() * 8);
-    document.getElementById('anecdote').innerHTML = anecdotes[random];
     setSelected(random);
   };
 
   const voteHandler = () => {
     const array = [...votes];
     array[selected] += 1;
-    document.getElementById('best-anecdote').innerHTML =
-      anecdotes[array.indexOf(Math.max(...array))];
     setVotes(array);
   };
 
@@ -75,7 +72,9 @@ function App() {
         handler={anecdoteHandler}
       />
       <h2>Anecdote with most votes</h2>
-      <div id="best-anecdote"></div>
+      <div id="best-anecdote">
+        {anecdotes[votes.indexOf(Math.max(...votes))]}
+      </div>
       <h2>Give feedback</h2>
       <Button
         text="good"
